@@ -15,14 +15,12 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=",", intents=intents, help_command=None)
+bot = commands.Bot(command_prefix=".", intents=intents, help_command=None)
 
 
 @bot.event
 async def on_ready():
     log.info(f"Conectado como {bot.user} ({bot.user.id})")
-    synced = await bot.tree.sync()
-    log.info(f"{len(synced)} comandos slash sincronizados")
 
 
 async def load_cogs():
