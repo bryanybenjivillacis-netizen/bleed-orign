@@ -34,13 +34,13 @@ async def load_cogs():
 
 async def main():
     await init_db()
-    async with bot:
-        await load_cogs()
-        await bot.start(DISCORD_TOKEN)
+    try:
+        async with bot:
+            await load_cogs()
+            await bot.start(DISCORD_TOKEN)
+    finally:
+        await close_pool()
 
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    finally:
-        asyncio.run(close_pool())
+    asyncio.run(main())
